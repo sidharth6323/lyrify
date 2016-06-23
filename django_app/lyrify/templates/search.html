@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!--
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+
+    jQuery('.search').submit( function() {
+
+        $.ajax({
+            url     : $(this).attr('action'),
+            type    : $(this).attr('method'),
+            data    : $(this).serialize(),
+            success : function( response ) {
+                        alert( response );
+                      }
+        });
+
+        return false;
+    });
+
+});
+</script>
+-->
+
+<div style="padding-left:75px;margin-top:100px;">
+<div class="card-panel grey lighten-1 z-depth-4" style="opacity:0.9;width:1200px;min-height:400px">
+          <h4 align="center" style="padding-top:15px;">Search for your favourite lyrics</h4>
+          
+<form  method="GET">
+</br>
+<div class="input-field" style="width:400px;margin-left:350px;margin-right:10px;">
+		  <i class="material-icons prefix">search</i>
+          <input id="search"  class="search"type="text" {% if query %}value="{{query}}" {% endif %} class="validate" name="song">
+          <label for="search">Search here.</label>
+          <div style="padding-left:420px;">
+          <button style="position:absolute;top:0;left:10;right:10;padding-left:10px;" class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action"><i class="material-icons right">queue_music</i>Lyrify
+    
+  </button>
+  </div>
+  <small style="margin-left:100px;margin-top:0px;">for refined search add singer name with song</small>
+  
+</div>
+          
+</br></br>
+{% if not query %}
+<div style="margin-left:400px"><span>Connect with Us :</span>&nbsp &nbsp	
+<a href="http://www.facebook.com"><img  src="{% static "img/fb.png" %}" width="40px" height="40px" style="padding-top:10px;" class="circle responsive-img"></a>&nbsp&nbsp&nbsp
+<a href="http://www.twitter.com"><img  style="padding-top:10px;" src="{% static "img/twitter.png" %}" width="40px" height="40px" class="circle responsive-img"></a>&nbsp&nbsp
+<a href="http://plus.google.com"><img  style="padding-top:10px;" src="{% static "img/google.png" %}" width="40px" height="40px" class="circle responsive-img"></a>
+{% endif %}
+{% if query %}
+<h5>search result for " {{query}} " :</h5></br>
+
+<table class="centered bordered highlight">
+        <thead>
+          <tr>
+              <th data-field="id">Songs</th>
+              
+              </tr>
+        </thead>
+
+        <tbody>
+        {% for mykey,myvalue in a %}
+          <tr class="tr" onclick="window.document.location='/eng/?{{myvalue}}';" style="cursor:pointer;">
+            <td>{{mykey}}</td> 
+          </tr>
+         
+         {% endfor %}
+         {% for mykey,myvalue in b %}
+          <tr onclick="window.document.location='/hin/{{myvalue}}';" style="cursor:pointer;">
+            <td>
+				{{mykey}}</td>
+            
+          </tr>
+         {% endfor %}
+         <tr onclick="window.document.location='#nav';" style="cursor:pointer;">
+            <td>
+        <span style="font-family:bonvenoCF; font-size:20px;">Didn't get your song. Try Appending singer name with song..</span>
+        </td>
+          </tr>
+        </tbody>
+      </table>
+            
+{% endif %}
+</form>
+
+</div>
+
+
+
+
+        </div>
+</br></br></br>
+{% endblock %}
+</html>
+
+

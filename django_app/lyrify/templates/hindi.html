@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+{% extends "base.html" %}
+
+{% block content %}
+<div style="padding-left:75px;margin-top:100px;">
+<div class="card-panel grey lighten-1 z-depth-4" style="opacity:0.9;width:1200px;">         
+<form action="." method="GET">
+  <input type="hidden" name="singer">
+ <input type="hidden" name="song">
+<h3>Lyrics : {{query}}</h3></br>
+<div style="text-align:center;padding-left:400px;">{{data |safe|wordwrap:"500"|linebreaks}}</div>
+</form>
+</div>
+        </div>
+
+{% endblock %}
+
+</html>

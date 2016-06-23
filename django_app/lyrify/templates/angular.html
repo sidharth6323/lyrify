@@ -1,0 +1,57 @@
+<html>
+<head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body bgcolor="#d1cfcf">
+<div class="navbar-fixed">
+    <nav class=" red darken-4">
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo" style="text-align:center;">Cricket Livescore</a>
+        <ul class="right hide-on-med-and-down">
+          <!--<li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>-->
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <br>
+<div ng-app="myApp" ng-controller="customersCtrl">
+<div ng-repeat="x in names" style="padding-left:5%">
+<div class="card-panel" style="width:95%">
+<h3>{$ x.Team $}</h3>
+<h4>{$ x.Batting_team +" "+ x.Batting_Team_Runs+"/"+x.Batting_Team_Wickets$}<br>{$" Overs "
++ x.Batting_Team_Overs 
+ $}</h4>
+ <h6>{$ x.Bowling_team +" "+ x.Bowling_Team_Runs+"/"+x.Bowling_Team_Wickets$}<br>{$" Overs "
++ x.Bowling_Team_Overs 
+ $}</h6>
+ <h5>Status: {$ x.Match_Status $}</h5>
+ Venue: {$ x.Venue $}<br>
+</div>
+<br>
+</div>
+</div>
+
+
+<script>
+	var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http, $interval) {
+	
+	$interval(clickButton,1000);
+	
+	function clickButton() {
+  $http.get("/livescoreAPI")
+  .then(function (response) {$scope.names = response.data;});}
+
+});
+var my_app = angular.module('myApp').config(function($interpolateProvider) {
+    $interpolateProvider.startSymbol('{$');
+    $interpolateProvider.endSymbol('$}');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div style="padding-left:75px;margin-top:100px;">
+<div class="card-panel grey lighten-1 z-depth-4" style="opacity:0.9;width:1200px;">
+<h4 align="center" style="padding-top:15px;">Report Bug</h4>
+          
+<form  method="POST" action=".">
+{% csrf_token %}
+{% if status %}<medium>{{status}}</medium>{% endif %}
+</br>
+<div style="padding-left:420px;">
+<div class="input-field" style="width:400px;margin-right:10px;">
+      <i class="material-icons prefix">label_outline</i>
+          <input id="name" type="text" {% if query %}value="{{query}}" {% endif %} class="validate" name="name">
+          <label for="name">Your Name.</label>          
+  </div>
+  <div class="input-field" style="width:400px;margin-right:10px;">
+  <i class="material-icons prefix">email</i>
+      <input id="email" type="email" {% if query %}value="{{query}}" {% endif %} class="validate" name="email">
+          <label for="email">Your Email</label>
+    </div>
+    <div class="input-field" style="width:400px;margin-right:10px;">
+    <i class="material-icons prefix">report_problem</i>
+          <textarea id="bug" name="bug" class="materialize-textarea"></textarea>
+          <label for="bug">Bug</label>
+        </div>
+        <div>
+        <br>&nbsp&nbsp&nbsp
+        <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action"><i class="material-icons right">announcement</i>Report
+  </button>
+  </div>
+
+  </div>
+  </form>
+  <br><br>
+</div>
+</div>
+        </div>
+
+{% endblock %}
+
+</html>

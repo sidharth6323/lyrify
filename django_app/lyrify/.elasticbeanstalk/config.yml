@@ -1,0 +1,10 @@
+branch-defaults:
+  master:
+    environment: lyrify
+global:
+  application_name: lyrify
+  default_ec2_keyname: sidharth6323
+  default_platform: 64bit Amazon Linux 2015.09 v2.0.4 running Python 2.7
+  default_region: ap-southeast-1
+  profile: eb-cli
+  sc: git
